@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  seata:
+    image: seataio/seata-server
+    restart: always
+    container_name: seata
+    ports:
+      - 8091:8091
+      - 7091:7091 #web页面端口
+    environment:
+      - SEATA_IP=192.168.3.201
+      - SEATA_PORT=8091      
+    volumes:
+      - ./application.yml:/seata-server/resources/application.yml

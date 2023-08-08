@@ -1,0 +1,34 @@
+version: "3"
+services:
+  nacos:
+    image: nacos/nacos-server:v2.2.3
+    container_name: nacos-standalone-mysql
+    env_file:
+      - ./env/nacos-standlone-mysql.env
+    volumes:
+      - ./standalone-logs/:/home/nacos/logs
+      - ./init.d/application.properties:/home/nacos/conf/application.properties
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: on-failure
+  mysql:
+    container_name: mysql
+    build:
+      context: .
+      dockerfile: ./mysql57/Dockerfile #根据不同的mysql版本选择不同的文件,具体位置以自己实际情况为准
+    env_file:
+      - ./env/mysql.env #配置文件
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10

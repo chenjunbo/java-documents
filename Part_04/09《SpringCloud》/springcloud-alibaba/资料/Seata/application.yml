@@ -1,0 +1,46 @@
+server:
+  port: 7091
+spring:
+  application:
+    name: seata-server
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: ${user.home}/logs/seata
+
+console: #控制台账号密码
+  user:
+    username: admin
+    password: admin
+
+seata:
+  config: #配置类型,此处使用nacos也就是我们需要再nacos中创建相关配置
+    # support: nacos, consul, apollo, zk, etcd3
+    type: nacos
+    nacos:
+      serverAddr: 192.168.3.201:8848
+      group: SEATA_GROUP
+      namespace: ""
+      cluster: default
+      username: ""
+      password: ""
+      data-id: seataServer.properties #在nacos中我们需要创建的配置文件
+  registry: #注册中心
+    # support: nacos, eureka, redis, zk, consul, etcd3, sofa
+    type: nacos
+    loadBalance: RandomLoadBalance
+    loadBalanceVirtualNodes: 10
+    nacos:
+      application: seata-server
+      serverAddr: 192.168.3.201:8848
+      group: SEATA_GROUP
+      namespace: ""
+      cluster: default
+      username: ""
+      password: ""
+  security:
+    secretKey: SeataSecretKey0c382ef121d778043159209298fd40bf3850a017
+    tokenValidityInMilliseconds: 1800000
+    ignore:
+      urls: /,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.ico,/console-fe/public/**,/api/v1/auth/login
+
