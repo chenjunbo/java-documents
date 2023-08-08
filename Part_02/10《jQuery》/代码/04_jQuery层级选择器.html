@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>层级选择器</title>
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+</head>
+<body>
+    <ul>
+        <li>helloworld</li>
+    </ul>
+    <h2>层级选择器</h2>
+    <ul>
+        <li>1 后代选择器：div span</li>
+        <li>2 子代选择器：div > span</li>
+        <li>3 相邻兄弟: + </li>
+        <li>4 同胞兄弟: ~ </li>
+    </ul>
+    <div>
+        <span>span1</span>
+        <p>
+            <span>span2</span>
+        </p>
+    </div>
+    <ul>
+        <li>aaa</li>
+    </ul>
+    <input type="button" value="后代选择器" onclick="click1()">
+    <input type="button" value="子代选择器" onclick="click2()">
+    <input type="button" value="相邻选择器" onclick="click3()">
+    <input type="button" value="同胞选择器" onclick="click4()">
+
+    <script type="text/javascript">
+        function click1() {
+            $("div span").css("color","blue");
+        }
+        function click2() {
+            $("div>span").css("font-size","22px");
+        }
+        function click3() {
+            $("h2+ul").css("color","orange");
+        }
+        function click4() {
+            $("h2~ul").css("color","orange");
+        }
+    </script>
+
+</body>
+</html>

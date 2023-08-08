@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM操作2：获取、设置属性</title>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+    <h2>获取设置属性</h2>
+    <ul>
+        <li>attr(attr,value);获取、设置常见的属性</li>
+        <li>prop(attr,value);获取、设置所有的属性</li>
+    </ul>
+
+    <img id="img1" src="images/1.jpg" width="200">
+    <input type="button" value="获取src属性" onclick="click1()">
+    <input type="button" value="设置src属性" onclick="click2()">
+    <script type="text/javascript">
+        function click1() {
+           // alert(document.getElementById("img1").src);
+            alert($("#img1").prop("src"));
+        }
+        function click2() {
+            $("#img1").prop("src","images/2.jpg");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM操作3：创建、删除元素</title>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+    <ul>
+        <li>append:在元素的内部的最后追加</li>
+        <li>prepend:在元素的内部的前面追加</li>
+        <li>after:在元素的外部的后面添加</li>
+        <li>before:在元素的外部的前面添加</li>
+    </ul>
+    <ul>
+        <li>remove();直接删除元素，删除父元素</li>
+        <li>empty();清空子元素，不会删除父元素</li>
+    </ul>
+
+    <div id="box">
+        <span>欢迎访问我的网站</span>
+    </div>
+
+    <input type="button" value="创建元素" onclick="click1()">
+    <input type="button" value="删除元素" onclick="click2()">
+    <script type="text/javascript">
+        function click1() {
+            $("#box").append("<img src='images/1.jpg' width='100'>");
+            //$("#box").prepend("<img src='images/1.jpg' width='100'>");
+            //$("#box").after("<img src='images/1.jpg' width='100'>");
+            //$("#box").before("<img src='images/1.jpg' width='100'>");
+        }
+        function click2() {
+            //$("#box").remove();
+            $("#box").empty();
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM操作1：获取、设置内容</title>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+<h2 id="poemTitle"><span>咏鹅</span></h2>
+<p>鹅鹅鹅</p>
+<p>曲项向天歌</p>
+<p>白毛浮绿水</p>
+<p>红掌拨清波</p>
+<input type="text" name="username" id="username">
+<input type="button" value="获取内容" onclick="click1()">
+<input type="button" value="设置内容" onclick="click2()">
+<input type="button" value="获取设置value属性" onclick="click3()">
+<script type="text/javascript">
+    function click1() {
+        let title=$("#poemTitle").html();//innerHTML
+        //let title=$("#poemTitle").text();//innerText;
+        alert(title);
+    }
+    function click2() {
+       $("#poemTitle").html("咏梅");
+       $("#poemTitle").text("咏梅");
+    }
+    function click3() {
+        let username=$("#username").val();
+        alert(username);
+        $("#username").val("xxxxxxx");
+    }
+</script>
+</body>
+</html>

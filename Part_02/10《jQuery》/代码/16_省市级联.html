@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市级联</title>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+</head>
+<body>
+<select name="province" id="province">
+    <option value="0">---请选择---</option>
+</select>
+<select name="city" id="city">
+    <option value="0">---请选择---</option>
+</select>
+<script type="text/javascript">
+    let cities = new Array();
+    cities['河北'] = ["保定", "唐山", "廊坊", "石家庄", "张家口"];
+    cities['河南'] = ["郑州", "新乡", "洛阳", "安阳", "平顶山"];
+    cities['山西'] = ["太原", "大同", "晋中", "平遥"];
+    for (let k in cities) {
+        $("#province").append("<option value='" + k + "'>" + k + "</option>");
+    }
+    $("#province").change(function () {
+        //alert($(this).val());
+        let arr=cities[$(this).val()];
+        //清空
+        $("#city").empty();
+        $("#city").append("<option value='0'>---请选择---</option>");
+        for(let n of arr){
+            $("#city").append("<option value='" + n + "'>" + n + "</option>");
+        }
+    });
+
+</script>
+</body>
+</html>

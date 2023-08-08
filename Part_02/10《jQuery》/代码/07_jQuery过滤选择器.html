@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤选择器</title>
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+</head>
+<body>
+    <h2>过滤选择器</h2>
+    <ul>
+        <li>:first:选择第一个元素</li>
+        <li>:last:选择最后一个元素</li>
+        <li>:even:选择下标为偶数的元素</li>
+        <li>:odd:选择下标为奇数的元素</li>
+    </ul>
+    <input type="button" value="过滤选择器" onclick="click1()">
+    <script type="text/javascript">
+        function click1() {
+            $("li:first").css("background-color","skyblue");
+            $("li:last").css("background-color","pink");
+        }
+    </script>
+    
+</body>
+</html>

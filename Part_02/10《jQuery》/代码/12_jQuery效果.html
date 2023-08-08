@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery效果</title>
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+</head>
+<body>
+    <h1>jQuery效果</h1>
+    <h3>1.显示、隐藏</h3>
+    <div>
+        <img id="img1" src="images/1.jpg" width="200">
+    </div>
+    <input type="button" value="隐藏" onclick="click1()">
+    <input type="button" value="显示" onclick="click2()">
+    <input type="button" value="切换" onclick="click3()">
+    <h3>2.淡出、淡入</h3>
+    <div>
+        <img id="img2" src="images/2.jpg" width="200">
+    </div>
+
+    <input type="button" value="淡出" onclick="click4()">
+    <input type="button" value="淡入" onclick="click5()">
+    <input type="button" value="切换" onclick="click6(ss)">
+    <input type="button" value="半透明" onclick="click7()">
+    <h3>3.滑出、滑入</h3>
+    <div>
+        <img id="img3" src="images/3.png" width="200">
+    </div>
+    <input type="button" value="淡出" onclick="click8()">
+    <input type="button" value="淡入" onclick="click9()">
+    <input type="button" value="切换" onclick="click10()">
+
+    <script type="text/javascript">
+        function click1() {
+            $("#img1").hide(5000);
+        }
+        function click2() {
+            $("#img1").show(5000);
+        }
+        function click3() {
+            $("#img1").toggle(5000);
+        }
+        function click4() {
+            $("#img2").fadeOut();
+        }
+        function click5() {
+            $("#img2").fadeIn();
+        }
+        function click6() {
+            $("#img2").fadeToggle();
+        }
+        function click7() {
+            $("#img2").fadeTo(2000,0.2);
+        }
+        function click8() {
+            $("#img3").slideUp();
+        }
+        function click9() {
+            $("#img3").slideDown();
+        }
+        function click10() {
+            $("#img3").slideToggle();
+        }
+    </script>
+</body>
+</html>

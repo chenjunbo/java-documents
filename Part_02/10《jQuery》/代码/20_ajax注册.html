@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用ajax实现注册</title>
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+</head>
+<body>
+    <h2>用户注册</h2>
+    <form id="myform" action="" method="post">
+        <table>
+            <tr>
+                <td>
+                    用户名:
+                </td>
+                <td>
+                    <input type="text" name="username" id="username">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    密码:
+                </td>
+                <td>
+                    <input type="password" name="pwd1" id="pwd1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    密码:
+                </td>
+                <td>
+                    <input type="password" name="pwd2" id="pwd2">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    邮箱:
+                </td>
+                <td>
+                    <input type="email" name="email" id="email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    电话:
+                </td>
+                <td>
+                    <input type="text" name="phone" id="phone">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    出生日期:
+                </td>
+                <td>
+                    <input type="date" name="bornDate" id="bornDate">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="注册" onclick="ajaxregist()">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script type="text/javascript">
+        function ajaxregist() {
+            //使用jQuery的ajax实现注册
+            //(1)表单校验
+            let b=validate();
+            if(b){
+                //ajax
+                //"username=xxx&pwd=1111111&pwd2=111111"
+                //serialize()把表单数据序列化成字符串。
+                let formData=$("#myform").serialize();
+                //alert(formData);
+                $.post("http://localhost:8080/day40_ajax/regist",formData,function (data) {
+                    alert(data.msg);
+                    if(data.msg=="success"&&data.code=="10002"){
+                       // window.location="login.html";
+                    }else{
+                       // window.location="regist.html";
+                    }
+                });
+            }
+        }
+        function validate() {
+            var username=$("#username").val();
+            var pwd1=$("#pwd1").val();
+            var pwd2=$("#pwd2").val();
+            var email=$("#email").val();
+            if(username==null||username.trim().length==0){
+                alert("用户名不能为空");
+                return false;
+            }
+            if(pwd1==null||pwd1.trim().length==0){
+                alert("密码不能为空");
+                return false;
+            }
+            if(pwd1.length<6){
+                alert("密码长度必须大于等于6");
+                return false;
+            }
+            if(pwd1!=pwd2){
+                alert("两次密码不一致");
+                return false;
+            }
+            if(email==null||email.trim().length==0){
+                alert("邮箱不能为空");
+                return false;
+            }
+            return true;
+
+        }
+    </script>
+</body>
+</html>

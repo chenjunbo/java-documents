@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM操作4：获取设置css样式</title>
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+    <style type="text/css">
+        .class1{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>DOM操作4：获取设置css样式</h2>
+    <ul>
+        <li>css();获取、设置css样式</li>
+        <li>addClass();添加class属性</li>
+        <li>removeClass();删除class属性</li>
+        <li>toggleClass();切换class属性</li>
+    </ul>
+    <h2>登鹳雀楼</h2>
+    <p>白日依山尽</p>
+    <p>黄河入海流</p>
+    <p>欲穷千里目</p>
+    <p>更上一层楼</p>
+
+    <input type="button" value="css()" onclick="click1()">
+    <input type="button" value="addClass()" onclick="click2()">
+    <input type="button" value="removeClass()" onclick="click3()">
+    <input type="button" value="toggleClass()" onclick="click4()">
+    <script type="text/javascript">
+        function click1() {
+            //设置样式
+            // $("h2")
+            //     .css("background-color","skyblue")
+            //     .css("color","red");
+            $("h2").css({
+                "background-color":"skyblue",
+                "color":"red"
+            });
+            //获取样式
+            alert($("h2").css("background-color"));
+        }
+        function click2() {
+            $("p").addClass("class1");
+        }
+        function click3() {
+            $("p").removeClass("class1");
+        }
+        function click4() {
+            $("p").toggleClass("class1");
+        }
+    </script>     
+</body>
+</html>

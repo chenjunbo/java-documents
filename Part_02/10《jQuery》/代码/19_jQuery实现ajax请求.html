@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery实现ajax请求</title>
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+</head>
+<body>
+    <input type="button" value="get请求" onclick="click1()">
+    <input type="button" value="post请求" onclick="click2()">
+    <input type="button" value="ajax()请求" onclick="click3()">
+    <script type="text/javascript">
+        function click1() {
+            $.get("http://localhost:8080/day40_ajax/booklist",function (data) {
+                //data就是javascript对象
+                for(let book of data){
+                    alert(book.id+"..."+book.title+"..."+book.author);
+                }
+            });
+        }
+        function click2() {
+            $.post("http://localhost:8080/day40_ajax/login","username=admin&pwd=999",function (data) {
+                //data就是javascript对象
+                alert(data.msg+"..."+data.code);
+            });
+        }
+        
+        function click3() {
+            //六个参数
+            //(1)url: ajax请求的地址
+            //(2)type: 请求方式get|post
+            //(3)data:数据
+            //(4)success:成功回调函数
+            //(5)contentType:提交的内容类型
+            //(6)dataType:期望服务器返回的数据类型
+            $.ajax({
+                    url:"http://localhost:8080/day40_ajax/login",
+                    type:"post",
+                    data:"username=admin&pwd=888",
+                    success:function (data) {
+                        alert(data.msg);
+                    },
+                    contentType:"application/x-www-form-urlencoded",
+                    dataType:"json"
+                });
+        }
+    </script>
+
+</body>
+</html>

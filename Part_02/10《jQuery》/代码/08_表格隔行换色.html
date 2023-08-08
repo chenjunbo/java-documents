@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格隔行换色</title>
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+</head>
+<body>
+
+<table id="mytable" width="500" border="1">
+    <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>电话</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>zhangsan</td>
+        <td>18</td>
+        <td>男</td>
+        <td>1141415</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>zhangsan</td>
+        <td>18</td>
+        <td>男</td>
+        <td>1141415</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>zhangsan</td>
+        <td>18</td>
+        <td>男</td>
+        <td>1141415</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>zhangsan</td>
+        <td>18</td>
+        <td>男</td>
+        <td>1141415</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>zhangsan</td>
+        <td>18</td>
+        <td>男</td>
+        <td>1141415</td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        $("#mytable tr:even").css("background-color","skyblue");
+    });
+</script>
+
+</body>
+</html>

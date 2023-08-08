@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM操作5：尺寸操作、查找元素、遍历元素</title>
+    <script src="js/jquery-1.12.4.js" type="text/javascript"></script>
+</head>
+<body>
+    <h2>1尺寸操作</h2>
+    <div id="div1" style="width: 200px;height: 100px; border: 5px solid red"></div>
+    <input type="button" value="获取设置宽度和高度" onclick="click1()">
+    <h2>2通过节点关系查找元素</h2>
+    <div>
+        <p id="p1">白日依山尽</p>
+        <p>黄河入海流</p>
+        <p>欲穷千里目</p>
+        <p>更上一层楼</p>
+    </div>
+    <input type="button" value="查找元素" onclick="click2()">
+    <h2>3遍历元素</h2>
+    <input type="button" value="遍历元素" onclick="click3()">
+    <script type="text/javascript">
+        function click1() {
+            alert($("#div1").width()+"..."+$("#div1").height());
+            alert($("#div1").outerWidth()+"..."+$("#div1").outerHeight());
+            $("#div1").width("300px");
+        }
+        function click2() {
+            alert($("#p1").parent().children().length);
+            alert($("#p1").parent().children().first().html());
+            alert($("#p1").parent().children().last().html());
+        }
+        function click3() {
+            let $ps=$("p");
+            alert($ps.length);
+            //(1)for循环遍历
+            // for(let i=0;i<$ps.length;i++){
+            //     //get()和eq()的区别，get()返回dom对象 ，eq返回的jQuery
+            //     //let dom_p=$ps.get(i);
+            //    let $p=$ps.eq(i);
+            //    alert($p.html());
+            // }
+            
+            //(2)each();遍历
+            $ps.each(function (i,n) {
+                alert(i+"..."+$(n).html());
+            });
+        }
+        
+    </script>
+
+
+
+
+</body>
+</html>
