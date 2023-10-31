@@ -62,7 +62,7 @@
 > - SpringBoot中整合第三方框架时，只需要导入相应的starter依赖包，就自动整合了。
 > - SpringBoot默认只有一个.yml的配置文件，不推荐使用xml，后期会采用.java的文件去编写配置信息。
 > - SpringBoot工程在部署时，采用的是jar包的方式，内部自动依赖Tomcat容器，提供了多环境的配置。
-> - 后期要学习的微服务框架SpringCloud需要建立在SpringBoot的基础上。
+> - SpringCloud需要建立在SpringBoot的基础上。
 
 
 
@@ -82,15 +82,7 @@
 
 
 
-##### 3.1.2 项目的描述
-
-| 项目的描述                                |
-| ----------------------------------------- |
-| ![1587376752337](mdpic/1587376752337.png) |
-
-
-
-##### 3.1.3 指定SpringBoot版本和需要的依赖
+##### 3.1.2 指定SpringBoot版本和需要的依赖
 
 |      指定SpringBoot版本和需要的依赖       |
 | :---------------------------------------: |
@@ -98,7 +90,7 @@
 
 
 
-##### 3.1.4 编写了Controller
+##### 3.1.3 编写了Controller
 
 ```java
 @RestController
@@ -114,7 +106,7 @@ public class TestController {
 
 
 
-##### 3.1.5 测试
+##### 3.1.4 测试
 
 > 通过主方法启动程序,默认端口是8080,访问我们的controller地址即可
 
@@ -163,13 +155,28 @@ public class TestController {
 
 ##### 3.3.1 运行启动类的main方法
 
-> 运行main方法即可
+> 运行主类main方法即可
 
 
 
 ##### 3.3.2 maven命令
 
 > 需要导入springboot的maven插件,通过脚手架创建的自带插件
+
+
+
+```xml
+ <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+
 
 ```sh
 mvn spring-boot:run
@@ -212,7 +219,7 @@ public class UserConfig {
     
     /*
     <beans ....>            @Configuration
-        <bean id="user1" class="com.qf.firstspringboot.entity.User" />
+        <bean id="user1" class="xin.chenjunbo.firstspringboot.entity.User" />
     </beans>
      */
 }
@@ -232,7 +239,7 @@ public class UserConfig {
 
 ```java
 @Configuration
-@ComponentScan(basePackages = "com.qianfeng.springannotation") //包扫描.用于扫描并创建我们自己指定了spring注解的类对象,当我们没有指定具体的包的时候,会扫描当前类所在的包以及子包,用于代替xml文件中的<context:component-scan base-package=""
+@ComponentScan(basePackages = "xin.chenjunbo.springannotation") //包扫描.用于扫描并创建我们自己指定了spring注解的类对象,当我们没有指定具体的包的时候,会扫描当前类所在的包以及子包,用于代替xml文件中的<context:component-scan base-package=""
 public class SpringConfig {
 }
 
@@ -304,7 +311,7 @@ spring:
 
 > 在resource目录下，创建多个application-环境名.yml文件即可
 >
-> 在部署工程时，通过 java -jar jar文件 --spring.profiles.active=环境 来手动指定 
+> 在部署工程时，通过 java -jar jar文件 --spring.profiles.active=环境 来手动修改指定 
 
 
 
@@ -476,25 +483,25 @@ public class ProviderStartApp {
 ##### 6.1.1 导入依赖。
 
 ```xml
-<!--        mysql驱动-->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-</dependency>
-
-<!--        druid连接-->
-<dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>druid-spring-boot-starter</artifactId>
-    <version>1.1.10</version>
-</dependency>
-
-<!--        mybatis-->
-<dependency>
-    <groupId>org.mybatis.spring.boot</groupId>
-    <artifactId>mybatis-spring-boot-starter</artifactId>
-    <version>1.3.2</version>
-</dependency>
+    <!--数据库驱动-->	      
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.49</version>
+        <scope>runtime</scope>
+    </dependency>
+    <!--mybatis-->
+    <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>3.0.2</version>
+    </dependency>
+    <!--连接池-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid-spring-boot-starter</artifactId>
+        <version>1.2.20</version>
+    </dependency>
 ```
 
 
@@ -545,14 +552,14 @@ public interface AirMapper {
 }
 
 // 2. 在启动类中添加直接，扫描Mapper接口所在的包
-@MapperScan(basePackages = "com.qf.firstspringboot.mapper")
+@MapperScan(basePackages = "xin.chenjunbo.firstspringboot.mapper")
 
 // 3. 准备映射文件
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qf.firstspringboot.mapper.AirMapper">
+<mapper namespace="xin.chenjunbo.firstspringboot.mapper.AirMapper">
 
 <!--    List<Air> findAll();-->
     <select id="findAll" resultType="Air">
@@ -569,7 +576,7 @@ mybatis:
   # 扫描映射文件
   mapper-locations: classpath:mapper/*.xml
   # 配置别名扫描的包
-  type-aliases-package: com.qf.firstspringboot.entity
+  type-aliases-package: xin.chenjunbo.firstspringboot.entity
   configuration:
     # 开启驼峰映射配置
     map-underscore-to-camel-case: true
@@ -645,7 +652,7 @@ District findOneById(@Param("id") Integer id);
 // yml文件
 logging:
   level:
-    com.qf.firstspringboot.mapper: DEBUG
+    xin.chenjunbo.firstspringboot.mapper: DEBUG
 ```
 
 
@@ -685,7 +692,7 @@ class DistrictMapperTest extends FirstSpringbootApplicationTests {
 <dependency>
     <groupId>com.github.pagehelper</groupId>
     <artifactId>pagehelper-spring-boot-starter</artifactId>
-    <version>1.2.5</version>
+    <version>1.4.7</version>
 </dependency>
 ```
 
@@ -836,7 +843,7 @@ public class MyListener implements ServletContextListener {
 
 ```java
 @SpringBootApplication
-@MapperScan("com.qianfeng.spring.mybatis.mapper")//扫描mapper
+@MapperScan("xin.chenjunbo.spring.mybatis.mapper")//扫描mapper
 @EnableTransactionManagement//事务管理
 @ServletComponentScan//扫描servlet相关的注解,如@WebServlet  @WebFilter @WebListener
 public class SSMStartApp {
@@ -860,7 +867,7 @@ public class SSMStartApp {
 
 ```java
 @SpringBootApplication
-@MapperScan("com.qianfeng.spring.mybatis.mapper")//扫描mapper
+@MapperScan("xin.chenjunbo.spring.mybatis.mapper")//扫描mapper
 @EnableTransactionManagement//事务管理
 public class SSMStartApp {
     public static void main(String[] args) {
