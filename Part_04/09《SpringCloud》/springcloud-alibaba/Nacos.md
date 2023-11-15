@@ -242,7 +242,9 @@ spring:
 
 #### 1.3 nacos配置中心
 
-> nacos的注册中心和配置中心分别为单独的依赖,nacos作为配置中心key实现实时刷新,从2021版本开始支持import模式
+> 在分布式微服务中,我们有大量的微服务和服务器,因此会有大量的重复的配置文件,当我们的配置发生变化的时候,需要重新部署到所有的机器上面,非常繁琐,为了解决这个痛点,我们将配置文件都放入到配置中心中,配置中心为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件
+>
+> nacos的注册中心和配置中心分别为单独的依赖,nacos作为配置中心,key实现实时刷新,从2021版本开始支持import模式
 
 
 
@@ -279,7 +281,7 @@ spring:
 
 
 
-在添加了spring-cloud-starter-bootstrap依赖的情况下按照规则在nacos中创建对应的文件,符合配置中的规则,程序启动的时候就可以加载了, 此配置需要在`bootstrap.yml`中
+在添加了`spring-cloud-starter-bootstrap`依赖的情况下按照规则在nacos中创建对应的文件,符合配置中的规则,程序启动的时候就可以加载了, 此配置需要在`bootstrap.yml`中
 
 ```yaml
 spring:
@@ -302,8 +304,6 @@ spring:
             group: beijing
           - data-id: test01.yml
             group: group_02
-
-
 ```
 
 
