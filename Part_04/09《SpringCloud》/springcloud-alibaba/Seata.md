@@ -17,6 +17,7 @@ version: '3.1'
 services:
   seata:
     image: seataio/seata-server
+    #platform: linux/amd64 #ARM平台
     restart: always
     container_name: seata
     ports:

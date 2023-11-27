@@ -16,6 +16,7 @@ services:
   nacos:
     image: nacos/nacos-server:v2.2.3
     container_name: nacos-standalone-mysql
+    #platform: linux/amd64 #ARM平台
     env_file:
       - ./env/nacos-standlone-mysql.env #nacos的存储设置,在资料目录中
     volumes:
@@ -31,6 +32,7 @@ services:
     restart: on-failure
   mysql:
     container_name: mysql
+    #platform: linux/amd64 #ARM平台
     build:
       context: .
       dockerfile: ./mysql57/Dockerfile #根据不同的mysql版本选择不同的文件,具体位置以自己实际情况为准
@@ -60,6 +62,7 @@ services:
     hostname: nacos1
     container_name: nacos1
     image: nacos/nacos-server:v2.2.3
+    #platform: linux/amd64 #ARM平台
     volumes:
       - ./cluster-logs/nacos1:/home/nacos/logs
       - ./init.d/application.properties:/home/nacos/conf/application.properties
@@ -76,6 +79,7 @@ services:
   nacos2:
     hostname: nacos2
     image: nacos/nacos-server:v2.2.3
+    #platform: linux/amd64 #ARM平台
     container_name: nacos2
     volumes:
       - ./cluster-logs/nacos2:/home/nacos/logs
@@ -92,6 +96,7 @@ services:
   nacos3:
     hostname: nacos3
     image: nacos/nacos-server:v2.2.3
+    #platform: linux/amd64 #ARM平台
     container_name: nacos3
     volumes:
       - ./cluster-logs/nacos3:/home/nacos/logs
@@ -406,6 +411,7 @@ management.endpoints.web.exposure.include=*
   prometheus: #监控容器,用于获取nacos数据并保存
     container_name: prometheus
     image: prom/prometheus:latest
+    #platform: linux/amd64 #ARM平台
     volumes: #设置配置文件,此处使用的是集群的nacos
       - ./prometheus/prometheus-cluster.yaml:/etc/prometheus/prometheus.yml
     ports:
@@ -501,6 +507,7 @@ services:
     hostname: nacos1
     container_name: nacos1
     image: nacos/nacos-server:v2.2.3
+    #platform: linux/amd64 #ARM平台
     volumes:
       - ./cluster-logs/nacos1:/home/nacos/logs
       - ./init.d/application.properties:/home/nacos/conf/application.properties
@@ -517,6 +524,7 @@ services:
   nacos2:
     hostname: nacos2
     image: nacos/nacos-server:v2.2.3
+    #platform: linux/amd64 #ARM平台
     container_name: nacos2
     volumes:
       - ./cluster-logs/nacos2:/home/nacos/logs
@@ -532,6 +540,7 @@ services:
         condition: service_healthy
   nacos3:
     hostname: nacos3
+    #platform: linux/amd64 #ARM平台
     image: nacos/nacos-server:v2.2.3
     container_name: nacos3
     volumes:
@@ -564,6 +573,7 @@ services:
       retries: 10
   prometheus: #监控容器,用于获取nacos数据并保存
     container_name: prometheus
+    #platform: linux/amd64 #ARM平台
     image: prom/prometheus:latest
     volumes: #设置配置文件
       - ./prometheus/prometheus-cluster.yaml:/etc/prometheus/prometheus.yml
@@ -574,6 +584,7 @@ services:
     restart: on-failure
   grafana: #图形化监控地址,配合prometheus使用
     container_name: grafana
+    #platform: linux/amd64 #ARM平台
     image: grafana/grafana:latest
     ports:
       - 3000:3000 #grafana http端口
