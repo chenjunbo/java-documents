@@ -218,6 +218,8 @@ predicates:
 
 #### 3.1.1 添加eureka依赖
 
+> 其它的注册中心导入对应依赖,并在配置文件中指定注册中心即可
+
 ```xml
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -968,7 +970,7 @@ public class MyGatewayFilterFactory extends AbstractGatewayFilterFactory<MyGatew
 
 ```java
 @Component
-public class MyGlobalFilter implements GlobalFilter, {
+public class MyGlobalFilter implements GlobalFilter,Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         System.err.println("全局过滤器执行了");
