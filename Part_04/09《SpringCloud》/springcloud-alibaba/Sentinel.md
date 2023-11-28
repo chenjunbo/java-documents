@@ -480,10 +480,10 @@ Sentinel 在系统自适应保护的做法是，用 load1 作为启动控制流�
   {
       "resource":"getOrderSentinel",//resource: 资源名称
      	"grade":2,// 0: 平均响应时间, 1: 异常比例, 2: 异常数
-    	"count":10. //数量,在RT类型下代表最大响应时间,在异常比例情况下代表比例0-1之间,异常数情况下代表数量
+    	"count":10, //数量,在RT类型下代表最大响应时间,在异常比例情况下代表比例0-1之间,异常数情况下代表数量
     	"timeWindow": 5, //熔断时间
     	"minRequestAmount":20, //最小请求数量
-   	//	 "slowRatioThreshold": 0.5 ,//仅在RT模式下游侠,代表比例
+   	//	 "slowRatioThreshold": 0.5 ,//仅在RT模式下有效,代表比例
     	"statIntervalMs" :1000 //滚动窗口周期
   }
 ```
