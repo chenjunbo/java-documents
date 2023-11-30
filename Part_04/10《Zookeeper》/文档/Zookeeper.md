@@ -40,7 +40,7 @@
 version: "3.1"
 services:
   zk:
-   image: baseservice.qfjava.cn:60001/zookeeper:3.6.3
+   image: zookeeper:3.6.3
    restart: always
    container_name: zk
    ports:
