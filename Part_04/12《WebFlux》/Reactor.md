@@ -216,7 +216,7 @@ public interface Subscription {
             <dependency>
                 <groupId>io.projectreactor</groupId>
                 <artifactId>reactor-bom</artifactId>
-                <version>2020.0.21</version>
+                <version>2023.0.1</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -505,9 +505,9 @@ Flux.range(0, 100).subscribe(System.out::println);
 
 ### 2.3 Reactor 操作函
 
+
+
 #### `concatWithValues`
-
-
 
 ```java
 @SafeVarargs
@@ -1138,7 +1138,7 @@ public final Flux<T> filter(Predicate<? super T> p)
 
 
 
-```cpp
+```java
 public final Flux<T> log()
 ```
 
@@ -1152,7 +1152,7 @@ public final Flux<T> log()
 
 
 
-```dart
+```java
 public final <V> Flux<V> map(Function<? super T,? extends V> mapper)
 ```
 
@@ -1224,14 +1224,19 @@ public final <R> Flux<R> flatMap(Function<? super T, ? extends Publisher<? exten
 
 
 
-```xml
+```java
 public final <V> Mono<V> then(Mono<V> other)
 ```
 
 > 让这个Flux完成，然后播放信号提供的Mono。
 >  换句话说，忽略这个Flux和转换完成信号的发射和提供Mono完成信号。在得到的Mono中重放错误信号。
 
-![img](mdpic/12191355-1eb9e12cc580731d.png)
+
+
+| ![img](mdpic/12191355-1eb9e12cc580731d.png) |
+| :-----------------------------------------: |
+
+
 
 ```java
  // 让前面的flux结束,然后执行后面提供的mono中的操作,flux没有人订阅获取数据,但是实际上可以认为是被订阅了,只是没有具体处理措施,doOnNext是执行的
@@ -1244,20 +1249,55 @@ public final <V> Mono<V> then(Mono<V> other)
 
 
 
+#### `Skip`
+
+```java
+public final Flux<T> skip(long skipped)
+```
+
+>从该Flux的开始跳过指定数量的元素，然后发布剩余的元素
+
+| ![skip](mdpic/skip.svg) |
+| :---------------------: |
+
+
+
+```java
+Flux.just(1, 2, 3, 4, 8, 5, 6, 6, 10, 100).skip(3).subscribe(System.out::println);
+```
+
+
+
+
+
+#### `Skip(Duration)`
+
+```java
+public final Flux<T> skip(Duration timespan)
+```
+
+> 跳过指定时间的数据,比如一个数据大于需要10秒钟,设置2秒则意味着前2秒的数据会跳过,只保留后面的8秒数据
+
+
+
+| ![skipWithTimespan](mdpic/skipWithTimespan.svg) |
+| :---------------------------------------------: |
+
+
+
+```java
+     Flux.interval(Duration.ofSeconds(1)).skip(Duration.ofSeconds(2)).subscribe(System.out::println);
+```
+
+
+
+
+
 
 
 ### 2.4Flux其它操作
 
 ```java
-
-
-转换和过滤响应式流
-//过滤
-public final Flux<T> skip(long skipped)
-//从该Flux的开始跳过指定数量的元素，然后发布剩余的元素
-
-public final Flux<T> skip(Duration timespan)
-
 public final Flux<T> take(long n) 
 //与skip相反，只发布前面指定数量的数据项
 public final Flux<T> take(Duration timespan)
