@@ -482,12 +482,10 @@ public class WebfluxdemoApplication {
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-        <!--r2dbc mysql 库
-            https://github.com/mirromutth/r2dbc-mysql
-         -->
         <dependency>
-            <groupId>dev.miku</groupId>
+            <groupId>io.asyncer</groupId>
             <artifactId>r2dbc-mysql</artifactId>
+            <version>1.1.3</version>
         </dependency>
         <!--Spring r2dbc 抽象层-->
         <dependency>
@@ -594,7 +592,7 @@ public class User {
 
 ```yaml
 spring:
-  r2dbc: #注意这里是r2dbc,下面没有驱动的类型,内部通过netty连接sql
+  r2dbc: #注意这里是r2dbc,下面没有驱动的类型,内部通过netty连接sql,Template模式有效
     url: r2dbcs:mysql://localhost:3306/webfluxtest?SSL=false&sslMode=DISABLED
     username: root
     password: qishimeiyoumima
@@ -754,7 +752,18 @@ public class UserServiceImpl implements UserService {
 
 ### 4.3 Repository 模式
 
-> 在jpa中,spring给我们提供了Repository可以帮我们简化sql的编写操作, 在r2dbc中也可以使用,不过r2dbc的功能暂时不完整,部分操作可能无法使用
+> 在jpa中,spring给我们提供了Repository可以帮我们简化sql的编写操作, 在r2dbc中也可以使用,不过r2dbc的功能暂时不完整,部分操作可能无法使用,注意与之对应的entity类中要添加Table和Id注解
+
+
+
+```xml
+   <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+```
+
+
 
 
 
