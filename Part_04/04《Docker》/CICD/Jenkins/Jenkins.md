@@ -16,13 +16,14 @@ Jenkins 是一个开源软件项目，是基于 Java 开发的一种持续集成
 
 #### 2.1.1 方式1
 
-Jenkins 是一个简单易用的持续集成软件平台，我们依然采用 Docker 的方式部署，`docker-compose.yml` 配置文件如下：
+> Jenkins 是一个简单易用的持续集成软件平台，我们依然采用 Docker 的方式部署，`docker-compose.yml` 配置文件如下：
 
 ```yaml
 version: '3.1'
 services:
   jenkins:
     restart: always
+    #镜像根据实际情况来决定
     image: baseservice.chenjunbo.xin:60001/jenkins/jenkins
     container_name: jenkins
     ports:
@@ -57,6 +58,7 @@ version: '3.1'
 services:
   jenkins:
     restart: always
+    #镜像根据实际情况来决定
     image: baseservice.chenjunbo.xin:60001/jenkins/jenkins
     container_name: jenkins
     ports:

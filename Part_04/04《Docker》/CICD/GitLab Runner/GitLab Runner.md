@@ -154,6 +154,8 @@ GitLab CI 最大的作用是管理各个项目的构建状态，因此，运行�
 
 在 `/usr/local/docker/runner/environment` 目录下创建 `daemon.json`，用于配置加速器和仓库地址
 
+> 私服地址取决于自己的实际情况
+
 ```json
 {
   "registry-mirrors": ["https://w6vrjqu4.mirror.aliyuncs.com"]
@@ -170,7 +172,10 @@ GitLab CI 最大的作用是管理各个项目的构建状态，因此，运行�
 
 在 `/usr/local/docker/runner/environment` 目录下创建 `Dockerfile`
 
+> 配置因为系统不一致可能会无法运行,如果有问题根据具体的运行时候的错误来解决
+
 ```shell
+#镜像根据实际情况来决定
 FROM baseservice.chenjunbo.xin:60001/gitlab-runner:bleeding
 # 修改软件源
 RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse' > /etc/apt/sources.list && \
@@ -220,7 +225,10 @@ WORKDIR /
 
 `以上方式如果有错误,使用下面方式`
 
+>配置因为系统不一致可能会无法运行,如果有问题根据具体的运行时候的错误来解决
+
 ```shell
+#镜像根据实际情况来决定
 FROM baseservice.chenjunbo.xin:60001/gitlab-runner:bleeding
 # 修改软件源
 RUN echo 'deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse' > /etc/apt/sources.list && \
@@ -299,12 +307,13 @@ services:
 
 ### 3.3 部署方式2快速部署
 
-本镜像已经配置好了环境,所以`启动前`只需要运行此命令`sudo chown root:root /var/run/docker.sock`之后通过下面的 docker-compose.yml 启动容器并继续后续步骤即可
+> 本镜像已经配置好了环境,所以`启动前`只需要运行此命令`sudo chown root:root /var/run/docker.sock`之后通过下面的 docker-compose.yml 启动容器并继续后续步骤即可
 
 ```yaml
 version: '3.1'
 services:
   gitlab-runner:
+  #镜像根据实际情况来决定
     image: baseservice.chenjunbo.xin:60001/gitlab-runner:bleeding
     restart: always
     container_name: gitlab-runner
