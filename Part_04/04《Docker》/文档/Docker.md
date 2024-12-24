@@ -207,6 +207,36 @@ systemctl disable firewalld
 
 
 
+#### 3.5 非管理员运行docker
+
+> 默认情况下，Docker 需要使用 root 或具有 sudo 权限的用户才能运行。如果希望非管理员用户运行 Docker，可以通过将用户添加到 docker 用户组来实现。
+
+
+
+##### 3.5.1 创建Docker用户组
+
+```shell
+sudo groupadd docker
+```
+
+
+
+##### 3.5.2 将非管理员用户加入 Docker 用户组
+
+```shell
+sudo usermod -aG docker your_username
+```
+
+##### 3.5.3 重新加载组
+
+```shell
+newgrp docker
+```
+
+
+
+
+
 
 
 ### 四、Docker的中央仓库【`重点`】
