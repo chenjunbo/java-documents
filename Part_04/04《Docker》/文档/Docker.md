@@ -123,60 +123,31 @@ yum -y install docker-ce
 
 
 
-##### 3.2.1 更新系统
+##### 3.2.1 设置Docker apt仓库
 
 > 打开终端，依次运行下列命令
 
 ```shell
-sudo apt update
-sudo apt upgrade
-sudo apt full-upgrade
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
 ```
 
 
-
-##### 3.2.2 添加 Docker 库
-
-###### 3.2.2.1  安装证书
-
->安装必要的证书并允许 apt 包管理器使用以下命令通过 HTTPS 使用存储库：
-
-
+##### 3.2.2 安装 Docker
 
 ```shell
-sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
-```
-
-
-
-###### 3.2.2.2 添加Docker  GPG 密钥
-
-```shell 
-curl -fsSL https:*//download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-```
-
-
-
-###### 3.2.2.3 添加官方库
-
-```shell
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-
-
-
-###### 3.2.2.4 更新源列表
-
-```shell
-sudo apt update
-```
-
-
-
-##### 3.2.3 安装 Docker
-
-```shell
-sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 
